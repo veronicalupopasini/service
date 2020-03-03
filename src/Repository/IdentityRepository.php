@@ -5,7 +5,9 @@ namespace Esc\Repository;
 
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use RuntimeException;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
 abstract class IdentityRepository extends ServiceEntityRepository implements IdentitySearchableRepository
 {
@@ -30,5 +32,38 @@ abstract class IdentityRepository extends ServiceEntityRepository implements Ide
             throw new RuntimeException('ID '. $id . 'does not exist');
         }
         return $value;
+    }
+
+    /**
+     * @param AttributeBag $parameters
+     * @return Criteria
+     */
+    private function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
+    {
+        return $this->getFiltersCriteria($parameters->get('filters'))
+            ->orderBy($parameters->get('sortBy'))
+            ->setMaxResults($parameters->get('limit'))
+            ->setFirstResult($parameters->get('offset'));
+    }
+
+    /**
+     * @param array $filters
+     * @return Criteria
+     */
+    private function getFiltersCriteria(array $filters): Criteria
+    {
+        return Criteria::create();
+    }
+
+    /**
+     * @param array $filters
+     * @return AttributeBag
+     */
+    private function prepareFiltersCriteria(array $filters): AttributeBag
+    {
+        $filtersBag = new AttributeBag();
+        $filtersBag->initialize($filters);
+
+        return $filtersBag;
     }
 }
