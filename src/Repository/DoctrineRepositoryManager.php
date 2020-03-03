@@ -1,12 +1,10 @@
 <?php
 
 
-namespace Esc\User\Repository;
+namespace Esc\Repository;
 
 
 use Doctrine\Common\Collections\Criteria;
-use Esc\Repository\CriteriaSearchableRepository;
-use Esc\Repository\IdentityRepository;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
 class DoctrineRepositoryManager extends IdentityRepository implements CriteriaSearchableRepository
