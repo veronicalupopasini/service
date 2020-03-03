@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Criteria;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
-abstract class IdentityRepository extends ServiceEntityRepository implements IdentitySearchableRepository
+abstract class Repository extends ServiceEntityRepository implements IdentitySearchableRepository
 {
     /**
      * @param int $id
@@ -38,7 +38,7 @@ abstract class IdentityRepository extends ServiceEntityRepository implements Ide
      * @param AttributeBag $parameters
      * @return Criteria
      */
-    public function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
+    protected function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
     {
         return $this->getFiltersCriteria($parameters->get('filters'))
             ->orderBy($parameters->get('sortBy'))
@@ -50,7 +50,7 @@ abstract class IdentityRepository extends ServiceEntityRepository implements Ide
      * @param array $filters
      * @return Criteria
      */
-    public function getFiltersCriteria(array $filters): Criteria
+    protected function getFiltersCriteria(array $filters): Criteria
     {
         return Criteria::create();
     }
@@ -59,7 +59,7 @@ abstract class IdentityRepository extends ServiceEntityRepository implements Ide
      * @param array $filters
      * @return AttributeBag
      */
-    public function prepareFiltersCriteria(array $filters): AttributeBag
+    protected function prepareFiltersCriteria(array $filters): AttributeBag
     {
         $filtersBag = new AttributeBag();
         $filtersBag->initialize($filters);
