@@ -38,7 +38,7 @@ abstract class IdentityRepository extends ServiceEntityRepository implements Ide
      * @param AttributeBag $parameters
      * @return Criteria
      */
-    private function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
+    public function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
     {
         return $this->getFiltersCriteria($parameters->get('filters'))
             ->orderBy($parameters->get('sortBy'))
@@ -50,7 +50,7 @@ abstract class IdentityRepository extends ServiceEntityRepository implements Ide
      * @param array $filters
      * @return Criteria
      */
-    private function getFiltersCriteria(array $filters): Criteria
+    public function getFiltersCriteria(array $filters): Criteria
     {
         return Criteria::create();
     }
@@ -59,7 +59,7 @@ abstract class IdentityRepository extends ServiceEntityRepository implements Ide
      * @param array $filters
      * @return AttributeBag
      */
-    private function prepareFiltersCriteria(array $filters): AttributeBag
+    public function prepareFiltersCriteria(array $filters): AttributeBag
     {
         $filtersBag = new AttributeBag();
         $filtersBag->initialize($filters);
