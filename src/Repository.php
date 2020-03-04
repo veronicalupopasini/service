@@ -10,7 +10,7 @@ use Doctrine\ORM\Query\QueryException;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
-abstract class Repository extends ServiceEntityRepository implements IdentitySearchableRepository
+abstract class Repository extends ServiceEntityRepository implements IdentitySearchableRepository, CriteriaSearchableRepository
 {
     /**
      * @param int $id
