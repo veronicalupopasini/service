@@ -30,7 +30,7 @@ abstract class Repository extends ServiceEntityRepository implements IdentitySea
     {
         $value = $this->findOneById($id);
         if ($value === null) {
-            throw new RuntimeException('ID '. $id . 'does not exist');
+            throw new RuntimeException('ID ' . $id . 'does not exist');
         }
         return $value;
     }
@@ -86,5 +86,8 @@ abstract class Repository extends ServiceEntityRepository implements IdentitySea
      * @param array $filters
      * @return Criteria
      */
-    abstract protected function getFiltersCriteria(array $filters): Criteria;
+    protected function getFiltersCriteria(array $filters): Criteria
+    {
+        return Criteria::create();
+    }
 }
