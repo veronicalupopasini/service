@@ -59,6 +59,18 @@ abstract class Repository extends ServiceEntityRepository implements IdentitySea
     }
 
     /**
+     * @param array $filters
+     * @return AttributeBag
+     */
+    public function prepareFiltersCriteria(array $filters): AttributeBag
+    {
+        $filtersBag = new AttributeBag();
+        $filtersBag->initialize($filters);
+
+        return $filtersBag;
+    }
+
+    /**
      * @param AttributeBag $parameters
      * @return Criteria
      */
@@ -74,20 +86,5 @@ abstract class Repository extends ServiceEntityRepository implements IdentitySea
      * @param array $filters
      * @return Criteria
      */
-    protected function getFiltersCriteria(array $filters): Criteria
-    {
-        return Criteria::create();
-    }
-
-    /**
-     * @param array $filters
-     * @return AttributeBag
-     */
-    protected function prepareFiltersCriteria(array $filters): AttributeBag
-    {
-        $filtersBag = new AttributeBag();
-        $filtersBag->initialize($filters);
-
-        return $filtersBag;
-    }
+    abstract protected function getFiltersCriteria(array $filters): Criteria;
 }
