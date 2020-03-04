@@ -6,6 +6,7 @@ namespace Esc\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\Query\QueryException;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
@@ -32,6 +33,29 @@ abstract class Repository extends ServiceEntityRepository implements IdentitySea
             throw new RuntimeException('ID '. $id . 'does not exist');
         }
         return $value;
+    }
+
+    /**
+     * @param AttributeBag $parameters
+     * @return mixed
+     * @throws QueryException
+     */
+    public function findByCriteria(AttributeBag $parameters)
+    {
+        return $this->createQueryBuilder('table')
+            ->addSelect('table')
+            ->addCriteria($this->getPaginatedAndFilteredCriteria($parameters))
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @param array $filters
+     * @return int
+     */
+    public function countByCriteria(array $filters): int
+    {
+        return count($this->matching($this->getFiltersCriteria($filters)));
     }
 
     /**
