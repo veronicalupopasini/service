@@ -1,5 +1,5 @@
 {
-    "name": "vlupopasini/repository",
+    "name": "escsrl/repository",
     "type": "library",
     "description": "Symfony base repository methods",
     "license": "MIT",
