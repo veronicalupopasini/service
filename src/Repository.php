@@ -74,7 +74,7 @@ abstract class Repository extends ServiceEntityRepository implements IdentitySea
      * @param AttributeBag $parameters
      * @return Criteria
      */
-    protected function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
+    public function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
     {
         return $this->getFiltersCriteria($parameters->get('filters'))
             ->orderBy($parameters->get('sortBy'))
@@ -86,7 +86,7 @@ abstract class Repository extends ServiceEntityRepository implements IdentitySea
      * @param array $filters
      * @return Criteria
      */
-    protected function getFiltersCriteria(array $filters): Criteria
+    public function getFiltersCriteria(array $filters): Criteria
     {
         return Criteria::create();
     }
