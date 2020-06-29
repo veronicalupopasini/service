@@ -30,7 +30,7 @@ abstract class Repository extends ServiceEntityRepository implements IdentitySea
     {
         $value = $this->findOneById($id);
         if ($value === null) {
-            throw new RuntimeException('ID ' . $id . 'does not exist');
+            throw new RuntimeException(sprintf('%s ID %s does not exist', __CLASS__, $id));
         }
         return $value;
     }
