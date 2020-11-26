@@ -1,5 +1,5 @@
 {
-  "name": "vlupopasini/service",
+  "name": "veronicalupopasini/service",
   "type": "library",
   "description": "Symfony base service methods",
   "license": "MIT",
@@ -11,18 +11,18 @@
   ],
   "autoload": {
     "psr-4": {
-      "Esc\\Repository\\": "src"
+      "Esc\\Service\\": "src"
     }
   },
   "require": {
-    "php": "^7.3",
+    "php": "^7.4",
     "ext-json": "*",
     "beberlei/assert": "^3.2",
     "doctrine/doctrine-bundle": "^2.0",
     "doctrine/orm": "^2.7",
     "nesbot/carbon": "^2.27",
     "sensio/framework-extra-bundle": "^5.5",
-    "symfony/security-bundle": "^5.0",
+    "symfony/security-bundle": "^5.1",
     "symfony/serializer-pack": "^1.0"
   },
   "require-dev": {
@@ -31,5 +31,5 @@
   "config": {
     "sort-packages": true
   },
-  "version": "1.0.2"
+  "version": "1.0.0"
 }

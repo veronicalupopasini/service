@@ -1,8 +1,7 @@
 <?php
 
 
-namespace Esc\Repository;
-
+namespace Esc\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
